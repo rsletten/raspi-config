@@ -1,0 +1,49 @@
+---
+- name: create rsletten
+  user:
+    name: rsletten
+
+- name: add influx key
+  apt_key:
+    url: https://repos.influxdata.com/influxdb.key
+    state: present
+
+- name: add influx repo
+  apt_repository:
+    repo: deb https://repos.influxdata.com/debian stretch stable
+    state: present
+    validate_certs: no
+    update_cache: yes
+
+- name: install packages
+  apt: 
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - puppet
+    - telegraf
+    - vim
+    - git
+
+- name: edit telegraf.conf
+  template:
+    src: telegraf.conf.j2
+    dest: /etc/telegraf/telegraf.conf
+  notify:
+    - restart telegraf
+
+- name: edit puppet.conf
+  lineinfile:
+    path: /etc/puppet/puppet.conf
+    line: "server = puppet.rsletten.com"
+  notify:
+    - restart puppet
+
+- name: ensure package is started
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  with_items:
+    - puppet
+    - telegraf

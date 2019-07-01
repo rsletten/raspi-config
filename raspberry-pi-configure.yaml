@@ -1,0 +1,6 @@
+---
+- hosts: pi
+  remote_user: root
+  roles:
+    - raspi-config
+
