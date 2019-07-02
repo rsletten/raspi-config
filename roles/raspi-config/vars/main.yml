@@ -2,3 +2,4 @@
 # vars file for raspi-config
 grafanaServer: "grafana.rsletten.com"
 grafanaPort: 8086
+puppetServer: "puppet.rsletten.com"

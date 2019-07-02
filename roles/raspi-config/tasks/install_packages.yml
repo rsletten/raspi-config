@@ -1,0 +1,10 @@
+---
+- apt: 
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - puppet
+    - telegraf
+    - vim
+    - git
+

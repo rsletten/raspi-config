@@ -1,0 +1,6 @@
+---
+- lineinfile:
+    path: /etc/puppet/puppet.conf
+    line: "server = {{ puppetServer }}"
+  notify:
+    - restart puppet

@@ -1,0 +1,10 @@
+---
+- apt_key:
+    url: https://repos.influxdata.com/influxdb.key
+    state: present
+
+- apt_repository:
+    repo: deb https://repos.influxdata.com/debian stretch stable
+    state: present
+    validate_certs: no
+    update_cache: yes
