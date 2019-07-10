@@ -1,3 +1,21 @@
 ---
 - user:
     name: rsletten
+
+- file:
+    path: "/home/{{ item }}/.ssh"
+    state: directory
+    owner: "{{ item }}"
+    group: "{{ item }}"
+    mode: 0700
+  with_items:
+    - rsletten
+
+- copy:
+    src: authorized_keys
+    dest: "/home/{{ item }}/.ssh/authorized_keys"
+    owner: "{{ item }}"
+    group: "{{ item }}"
+    mode: 0600
+  with_items:
+    - rsletten
