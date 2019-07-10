@@ -1,10 +1,4 @@
 ---
 - apt: 
-    name: "{{ item }}"
+    name: ['puppet', 'telegraf', 'vim', 'git']
     state: latest
-  with_items:
-    - puppet
-    - telegraf
-    - vim
-    - git
-
