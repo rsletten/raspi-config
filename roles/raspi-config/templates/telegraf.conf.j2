@@ -14,7 +14,7 @@
   hostname = "{{ ansible_fqdn }}"
   omit_hostname = false
 [[outputs.influxdb]]
-  urls = ["http://{{ grafanaServer }}:{{ grafanaPort }}"]
+  urls = ["http://{{ influxdbServer }}:{{ influxdbPort }}"]
   database = "telegraf"
   skip_database_creation = true
   timeout = "5s"
